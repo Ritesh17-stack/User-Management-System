@@ -1,13 +1,13 @@
 # config.py
 
 class Config:
-    SECRET_KEY = 'xyzabc'  
+    SECRET_KEY = 'your-secret-key'  
 
     # MySQL database configuration
     MYSQL_HOST = 'localhost'
     MYSQL_USER = 'root'
-    MYSQL_PASSWORD = 'Ritesh1234@' 
-    MYSQL_DB = 'user-system'
+    MYSQL_PASSWORD = 'your-password' 
+    MYSQL_DB = 'mysql-schema-name'
 
 
 
