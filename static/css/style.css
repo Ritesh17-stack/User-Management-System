@@ -1,0 +1,28 @@
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.card {
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+.btn {
+    border-radius: 20px;
+    padding: 8px 20px;
+}
+.navbar {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.form-control {
+    border-radius: 10px;
+}
+.user-detail-card {
+    padding: 20px;
+    background: white;
+}
+.table {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}

@@ -1,0 +1,57 @@
+{% include 'header.html' %}
+<title>Users - User Management</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+</head>
+<body>
+    {% include 'menus.html' %}
+    <div class="container py-5">
+        <h3 class="mb-4">User Listing</h3>
+        <div class="card">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover mb-0">
+                        <thead class="bg-primary text-white">
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Country</th>
+                                <th>Grade</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for user in users %}
+                            <tr>
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.email }}</td>
+                                <td>{{ user.role|capitalize }}</td>
+                                <td>{{ user.country }}</td>
+                                <td>
+                                    {% if user.grade %}
+                                    <span class="badge bg-success">{{ user.grade }}</span>
+                                    {% else %}
+                                    <span class="badge bg-secondary">N/A</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a href="{{ url_for('view', userid=user.userid) }}" class="btn btn-sm btn-success"><i class="bi bi-eye"></i></a>
+                                        <a href="{{ url_for('edit', userid=user.userid) }}" class="btn btn-sm btn-primary"><i class="bi bi-pencil"></i></a>
+                                        {% if session.role == 'admin' %}
+                                        <a href="{{ url_for('update_grade', userid=user.userid) }}" class="btn btn-sm btn-info"><i class="bi bi-award"></i></a>
+                                        {% endif %}
+                                        <a href="{{ url_for('password_change', userid=user.userid) }}" class="btn btn-sm btn-warning"><i class="bi bi-key"></i></a>
+                                        <a href="{{ url_for('delete', userid=user.userid) }}" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')"><i class="bi bi-trash"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{% include 'header.html' %}
+<title>Update Grade</title>
+</head>
+<body>
+    <div class="container">
+        {% include 'menus.html' %}
+        <br>
+        <h3>Update Grade for {{ user.name }}</h3>
+        <br>
+        <form action="{{ url_for('update_grade', userid=user.userid) }}" method="POST">
+            <div class="form-group">
+                <label for="grade">Grade:</label>
+                <select class="form-control" id="grade" name="grade">
+                    <option value="">Not Assigned</option>
+                    <option value="A" {% if user.grade=='A' %}selected{% endif %}>A</option>
+                    <option value="B" {% if user.grade=='B' %}selected{% endif %}>B</option>
+                    <option value="C" {% if user.grade=='C' %}selected{% endif %}>C</option>
+                    <option value="D" {% if user.grade=='D' %}selected{% endif %}>D</option>
+                    <option value="F" {% if user.grade=='F' %}selected{% endif %}>F</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Update Grade</button>
+            <a href="{{ url_for('users') }}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+</body>
+</html>

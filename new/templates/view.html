@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="user-profile">
+    <h2>User Profile</h2>
+    <div class="profile-card">
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <i class="fas fa-user-circle"></i>
+            </div>
+            <div class="profile-info">
+                <h3>{{ user.name }}</h3>
+                <p>{{ user.email }}</p>
+            </div>
+        </div>
+        <div class="profile-details">
+            <div class="detail-item">
+                <span class="label">User ID:</span>
+                <span class="value">{{ user.userid }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="label">Role:</span>
+                <span class="value">{{ user.role }}</span>
+            </div>
+            <div class="detail-item">
+                <span class="label">Country:</span>
+                <span class="value">{{ user.country }}</span>
+            </div>
+        </div>
+        <div class="profile-actions">
+            <a href="{{ url_for('edit', userid=user.userid) }}" class="btn btn-warning"><i class="fas fa-edit"></i> Edit Profile</a>
+            <a href="{{ url_for('password_change', userid=user.userid) }}" class="btn btn-primary"><i class="fas fa-key"></i> Change Password</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

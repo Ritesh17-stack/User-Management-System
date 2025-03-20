@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="dashboard-container">
+    <h2>Admin Dashboard</h2>
+    <div class="dashboard-summary">
+        <div class="summary-card">
+            <div class="card-icon">
+                <i class="fas fa-users"></i>
+            </div>
+            <div class="card-content">
+                <h3>Total Users</h3>
+                <p>{{ users|length }} users</p>
+            </div>
+        </div>
+        <div class="summary-card">
+            <div class="card-icon">
+                <i class="fas fa-file-alt"></i>
+            </div>
+            <div class="card-content">
+                <h3>Total Documents</h3>
+                <p>{{ documents|length }} files</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="admin-actions">
+        <h3>Quick Actions</h3>
+        <div class="action-buttons">
+            <a href="{{ url_for('users') }}" class="btn btn-primary"><i class="fas fa-users"></i> Manage Users</a>
+            <a href="{{ url_for('register') }}" class="btn btn-success"><i class="fas fa-user-plus"></i> Add New User</a>
+        </div>
+    </div>
+
+    <div class="recent-activity">
+        <h3>Recent Users</h3>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users[:5] %}
+                    <tr>
+                        <td>{{ user.userid }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.role }}</td>
+                        <td class="actions">
+                            <a href="{{ url_for('view', userid=user.userid) }}" class="btn btn-info"><i class="fas fa-eye"></i> View</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

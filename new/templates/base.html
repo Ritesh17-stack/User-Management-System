@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Authentication System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        {% if 'loggedin' in session %}
+        <nav class="navbar">
+            <div class="logo">User System</div>
+            <ul class="nav-links">
+                {% if session.role == 'teacher' %}
+                <li><a href="{{ url_for('users') }}"><i class="fas fa-users"></i> Users</a></li>
+                <li><a href="{{ url_for('register') }}"><i class="fas fa-user-plus"></i> Register</a></li>
+                <li><a href="{{ url_for('manage_grades') }}"><i class="fas fa-graduation-cap"></i> Manage Grades</a></li>
+                {% elif session.role == 'student' %}
+                <li><a href="{{ url_for('dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="{{ url_for('upload_document') }}"><i class="fas fa-upload"></i> Upload Document</a></li>
+                <li><a href="{{ url_for('grades') }}"><i class="fas fa-graduation-cap"></i> My Grades</a></li>
+                {% endif %}
+                <li><a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+            <div class="user-info">
+                <span>Welcome, {{ session.name }}</span>
+            </div>
+        </nav>
+        {% endif %}
+        
+        <div class="content">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            {% block content %}{% endblock %}
+        </div>
+        
+        <footer>
+            <p>&copy; 2025 User Authentication System</p>
+        </footer>
+    </div>
+</body>
+</html>

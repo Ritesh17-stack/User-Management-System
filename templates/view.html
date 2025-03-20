@@ -1,0 +1,21 @@
+{% include 'header.html' %}
+<title>User Details</title>
+</head>
+<body>
+    <div class="container">
+        {% include 'menus.html' %}
+        <h3>User Details</h3>
+        <div class="user-detail-card">
+            <h4>{{ user.name }}</h4>
+            <p><strong>Email: </strong>{{ user.email }}</p>
+            <p><strong>Role: </strong>{{ user.role }}</p>
+            <p><strong>Country: </strong>{{ user.country }}</p>
+            <p><strong>Grade: </strong>{{ user.grade if user.grade else 'Not assigned' }}</p>
+            <div class="mt-4">
+                <a href="{{ url_for('edit', userid=user.userid) }}" class="btn btn-primary">Edit User</a>
+                <a href="{{ url_for('users') }}" class="btn btn-secondary">Back to List</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

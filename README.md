@@ -1,0 +1,2 @@
+# User-Management-System
+ Developed a comprehensive web application using Flask and MySQL that implements role-based access control with secure authentication. Features include user registration, profile management, password change functionality with SHA-256 hashing, and administrative capabilities for user assessment. Implemented proper security measures including session management and input validation using regular expressions.
